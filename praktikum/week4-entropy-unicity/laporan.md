@@ -1,5 +1,5 @@
 # Laporan Praktikum Kriptografi
-Minggu ke-: 4 
+Minggu ke-:[ 4]
 Topik: [Entropy & Unicity Distance ]  
 Nama: [Zalsabilah nur aeni]  
 NIM: [230202793]  
@@ -40,23 +40,21 @@ Contoh format:
 ---
 
 ## 5. Source Code
-(Salin kode program utama yang dibuat atau dimodifikasi.  
-Gunakan blok kode:
+def brute_force_time(keyspace_size, attempts_per_second=1e6):
+    seconds = keyspace_size / attempts_per_second
+    days = seconds / (3600*24)
+    return days
 
-```python
-# contoh potongan kode
-def encrypt(text, key):
-    return ...
-```
+print("Waktu brute force Caesar Cipher (26 kunci) =", brute_force_time(26), "hari")
+print("Waktu brute force AES-128 =", brute_force_time(2**128), "hari")
 )
 
 ---
 
 ## 6. Hasil dan Pembahasan
-(- Lampirkan screenshot hasil eksekusi program (taruh di folder `screenshots/`).  
-- Berikan tabel atau ringkasan hasil uji jika diperlukan.  
-- Jelaskan apakah hasil sesuai ekspektasi.  
-- Bahas error (jika ada) dan solusinya. 
+Hasil perhitungan tersebut sudah sesuai dengan ekspektasi. Caesar Cipher memiliki ruang kunci yang sangat kecil, yaitu 26 kemungkinan, sehingga waktu yang dibutuhkan untuk melakukan brute force sangat singkat dan hampir tidak berarti. Sebaliknya, AES-128 memiliki ruang kunci sebesar 2^128 yang sangat besar, sehingga waktu brute force menjadi sangat lama dan secara praktis tidak mungkin dilakukan dengan kemampuan komputasi saat ini.
+
+Kode program tidak mengalami kesalahan secara penulisan dan dapat dijalankan dengan baik. Namun, perhitungan ini menggunakan asumsi kecepatan brute force yang tetap, yaitu 1 juta percobaan per detik, yang belum tentu sesuai dengan kondisi nyata. Untuk meningkatkan akurasi, nilai kecepatan percobaan dapat disesuaikan atau hasil perhitungan dapat ditampilkan dalam satuan waktu yang lebih besar, seperti tahun, agar lebih mudah dipahami.
 
 Hasil eksekusi program Caesar Cipher:
 
@@ -69,15 +67,14 @@ Hasil eksekusi program Caesar Cipher:
 
 ## 7. Jawaban Pertanyaan
 (Jawab pertanyaan diskusi yang diberikan pada modul.  
-- Pertanyaan 1: …  
-- Pertanyaan 2: …  
+- Pertanyaan 1: Entropy menunjukkan tingkat keacakan dan ketidakpastian sebuah kunci. Semakin besar nilai entropy, semakin banyak kemungkinan kunci yang harus ditebak sehingga kunci menjadi lebih sulit dipecahkan dan keamanannya lebih kuat.
+- Pertanyaan 2: Unicity distance penting karena menunjukkan jumlah minimum ciphertext yang dibutuhkan untuk menentukan kunci secara unik. Jika data terenkripsi melebihi batas ini, maka secara teori cipher dapat dipecahkan, sehingga membantu menilai batas keamanan suatu sistem kriptografi.
+- Pertanyaan 3: Brute force tetap menjadi ancaman meskipun algoritma kuat karena sering kali kunci yang digunakan lemah, terjadi kesalahan implementasi, atau adanya peningkatan kemampuan komputasi. Oleh karena itu, keamanan tidak hanya bergantung pada algoritma, tetapi juga pada kekuatan kunci dan cara penggunaannya.
 )
 ---
 
 ## 8. Kesimpulan
-(Tuliskan kesimpulan singkat (2–3 kalimat) berdasarkan percobaan.  )
-
----
+Berdasarkan hasil perhitungan, Caesar Cipher memiliki waktu brute force yang sangat singkat (hampir nol hari) karena ruang kuncinya kecil, sehingga tidak aman untuk digunakan. Sebaliknya, AES-128 membutuhkan waktu brute force yang sangat lama (hingga triliunan tahun), sehingga secara praktis mustahil dipecahkan dengan brute force. Hal ini menunjukkan bahwa semakin besar ruang kunci (entropy), semakin kuat tingkat keamanannya terhadap serangan brute force.
 
 ## 9. Daftar Pustaka
 (Cantumkan referensi yang digunakan.  

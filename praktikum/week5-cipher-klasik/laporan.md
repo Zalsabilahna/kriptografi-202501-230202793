@@ -1,5 +1,5 @@
 # Laporan Praktikum Kriptografi
-Minggu ke-: X  
+Minggu ke-: 5
 Topik: [Cipher Klasik (Caesar, Vigenère, Transposisi)]  
 Nama: [Zalsabilah nur aeni]  
 NIM: [230202793]  
@@ -37,23 +37,46 @@ Contoh format:
 ---
 
 ## 5. Source Code
-(Salin kode program utama yang dibuat atau dimodifikasi.  
-Gunakan blok kode:
+def transpose_encrypt(plaintext, key=5):
+    ciphertext = [''] * key
+    for col in range(key):
+        pointer = col
+        while pointer < len(plaintext):
+            ciphertext[col] += plaintext[pointer]
+            pointer += key
+    return ''.join(ciphertext)
 
-```python
-# contoh potongan kode
-def encrypt(text, key):
-    return ...
+def transpose_decrypt(ciphertext, key=5):
+    num_of_cols = int(len(ciphertext) / key + 0.9999)
+    num_of_rows = key
+    num_of_shaded_boxes = (num_of_cols * num_of_rows) - len(ciphertext)
+    plaintext = [''] * num_of_cols
+    col = 0
+    row = 0
+    for symbol in ciphertext:
+        plaintext[col] += symbol
+        col += 1
+        if (col == num_of_cols) or (col == num_of_cols - 1 and row >= num_of_rows - num_of_shaded_boxes):
+            col = 0
+            row += 1
+    return ''.join(plaintext)
+
+# Contoh uji
+msg = "TRANSPOSITIONCIPHER"
+enc = transpose_encrypt(msg, key=5)
+dec = transpose_decrypt(enc, key=5)
+print("Plaintext :", msg)
+print("Ciphertext:", enc)
+print("Decrypted :", dec)
 ```
 )
 
 ---
 
 ## 6. Hasil dan Pembahasan
-(- Lampirkan screenshot hasil eksekusi program (taruh di folder `screenshots/`).  
-- Berikan tabel atau ringkasan hasil uji jika diperlukan.  
-- Jelaskan apakah hasil sesuai ekspektasi.  
-- Bahas error (jika ada) dan solusinya. 
+Hasil program sudah sesuai dengan ekspektasi. Plaintext “TRANSPOSITIONCIPHER” berhasil dienkripsi menggunakan metode Transposition Cipher menjadi ciphertext “TPIPROOHASNENICRSTI”, dan setelah dilakukan dekripsi, hasilnya kembali sama dengan plaintext awal. Hal ini menunjukkan bahwa proses enkripsi dan dekripsi berjalan dengan benar serta algoritma bekerja sesuai konsep Transposition Cipher.
+
+Selama eksekusi program tidak ditemukan error. Jika error muncul, umumnya disebabkan oleh penggunaan nilai key yang berbeda antara enkripsi dan dekripsi atau kesalahan dalam perhitungan jumlah kolom dan baris. Solusinya adalah memastikan nilai key konsisten serta logika indeks kolom, baris, dan shaded boxes pada proses dekripsi sudah tepat. 
 
 Hasil eksekusi program Caesar Cipher:
 
@@ -66,15 +89,14 @@ Hasil eksekusi program Caesar Cipher:
 
 ## 7. Jawaban Pertanyaan
 (Jawab pertanyaan diskusi yang diberikan pada modul.  
-- Pertanyaan 1: …  
-- Pertanyaan 2: …  
+- Pertanyaan 1: Kelemahan utama Caesar Cipher adalah jumlah kuncinya sangat sedikit sehingga mudah dipecahkan dengan brute force dan pola huruf masih terlihat. Vigenère Cipher memang lebih kuat, tetapi tetap lemah karena pengulangan kunci dapat dianalisis sehingga memungkinkan serangan Kasiski dan analisis frekuensi. 
+- Pertanyaan 2: Cipher klasik mudah diserang dengan analisis frekuensi karena pola statistik bahasa pada plaintext masih muncul pada ciphertext. Huruf yang sering muncul tetap dapat dikenali sehingga penyerang bisa menebak isi pesan
+- Pertanyaan 3: Cipher substitusi memiliki kelebihan karena setiap huruf diganti sehingga tidak langsung terbaca, tetapi kelemahannya pola frekuensi huruf tetap terlihat. Cipher transposisi mempertahankan frekuensi huruf, namun hanya mengubah urutan sehingga pola kata masih dapat ditebak.
 )
 ---
 
 ## 8. Kesimpulan
-(Tuliskan kesimpulan singkat (2–3 kalimat) berdasarkan percobaan.  )
-
----
+implementasi Transposition Cipher pada program ini sudah berjalan dengan baik. Proses enkripsi dan dekripsi menghasilkan output yang sesuai, di mana ciphertext dapat dikembalikan ke plaintext semula tanpa perubahan. Hal ini menunjukkan bahwa algoritma telah diterapkan dengan benar dan nilai kunci yang digunakan konsisten, sehingga metode transposisi bekerja sesuai dengan teori yang dipelajari.
 
 ## 9. Daftar Pustaka
 (Cantumkan referensi yang digunakan.  

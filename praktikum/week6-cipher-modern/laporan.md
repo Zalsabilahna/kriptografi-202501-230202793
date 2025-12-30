@@ -48,7 +48,7 @@ public_key = key.publickey()
 
 # Enkripsi dengan public key
 cipher_rsa = PKCS1_OAEP.new(public_key)
-plaintext = b"RSA Example"
+plaintext = b"Zalsabilah na"
 ciphertext = cipher_rsa.encrypt(plaintext)
 print("Ciphertext:", ciphertext)
 
@@ -56,9 +56,7 @@ print("Ciphertext:", ciphertext)
 decipher_rsa = PKCS1_OAEP.new(private_key)
 decrypted = decipher_rsa.decrypt(ciphertext)
 print("Decrypted:", decrypted.decode())
-)
 
----
 
 ## 6. Hasil dan Pembahasan
 Hasil program sudah sesuai dengan ekspektasi. Plaintext “RSA Example” berhasil dienkripsi menggunakan public key sehingga menghasilkan ciphertext berupa data acak, lalu berhasil didekripsi kembali menggunakan private key dan menghasilkan plaintext yang sama seperti input awal proses enkripsi dan dekripsi RSA berjalan dengan benar.

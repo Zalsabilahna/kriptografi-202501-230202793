@@ -1,5 +1,5 @@
 # Laporan Praktikum Kriptografi
-Minggu ke-: 6
+Minggu ke-: 7
 Topik: [Diffie-Hellman Key Exchange
 ]  
 Nama: [Zalsabilah nur aeni]  

@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@0x/contracts-erc20": "^4.0.14"
+  }
+}
